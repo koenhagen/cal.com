@@ -13,6 +13,9 @@ jobs:
       - uses: ./.github/actions/dangerous-git-checkout
       - uses: ./.github/actions/yarn-install
       # Should be an 8GB machine as per https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
-      - run: yarn test
-      # We could add different timezones here that we need to run our tests in
-      - run: TZ=America/Los_Angeles yarn test -- --timeZoneDependentTestsOnly
+      - name: Run unit tests
+        uses: koenhagen/measure-energy-action@v0.33
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          run: yarn test
+          count: 1
