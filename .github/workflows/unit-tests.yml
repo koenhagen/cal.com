@@ -1,9 +1,6 @@
 name: Unit tests
 on:
-  workflow_call:
-  workflow_run:
-    workflows: [Crowdin Action]
-    types: [completed]
+  push:
 jobs:
   test:
     timeout-minutes: 20
